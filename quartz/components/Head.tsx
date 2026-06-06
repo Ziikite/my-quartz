@@ -106,7 +106,7 @@ export default (() => {
             return resource
           }
         })}
-      <script src="/my-quartz/custom.js" defer></script>
+      <script src="/my-quartz/static/custom.js" defer></script>
     <link rel="stylesheet" href="/my-quartz/static/toss-style.css"/>
     </head>
     )
