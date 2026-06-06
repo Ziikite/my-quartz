@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return b;
   }
 
-  // 정규화: 하이픈 여러개→하나, 특수문자 제거
   function normalize(str) {
     return decodeURIComponent(str)
       .toLowerCase()
@@ -78,48 +77,54 @@ document.addEventListener("DOMContentLoaded", () => {
       .trim();
   }
 
-  async function applyBadges() {
-    let newFiles;
-    try {
-      const res = await fetch('/my-quartz/static/new-files.json');
-      newFiles = await res.json();
-    } catch(e) { return; }
-    if (!newFiles?.length) return;
+  let newFiles = [];
 
-    const normalizedNew = newFiles.map(normalize);
+  // JSON 먼저 로드
+  fetch('/my-quartz/static/new-files.json')
+    .then(r => r.json())
+    .then(data => {
+      newFiles = data.map(normalize);
+      applyBadges();
+      // 사이드바 동적 렌더링 대응: 1초, 2초, 3초 후 재시도
+      setTimeout(applyBadges, 1000);
+      setTimeout(applyBadges, 2000);
+      setTimeout(applyBadges, 3000);
+    })
+    .catch(() => {});
 
-    function isNew(href) {
-      const normalized = normalize(href.replace('/my-quartz/', '').replace(/\/$/, ''));
-      return normalizedNew.some(f => {
-        const nf = normalize(f);
-        return normalized === nf || normalized.endsWith(nf) || nf.endsWith(normalized);
-      });
-    }
+  function isNew(href) {
+    const normalized = normalize(decodeURIComponent(href)
+      .replace('/my-quartz/', '')
+      .replace(/\/$/, ''));
+    return newFiles.some(f => {
+      return normalized === f ||
+        normalized.endsWith(f) ||
+        f.endsWith(normalized) ||
+        normalized.replace(/-+/g, '-') === f.replace(/-+/g, '-');
+    });
+  }
 
-    function addBadge(el) {
-      if (!el.querySelector('.new-badge')) el.appendChild(makeBadge());
-    }
-
-    // 사이드바 링크
+  function applyBadges() {
+    // 사이드바 파일 링크
     document.querySelectorAll('.nav-file-title a').forEach(link => {
-      if (isNew(link.getAttribute('href') || '')) addBadge(link);
+      if (link.querySelector('.new-badge')) return;
+      const href = link.getAttribute('href') || '';
+      if (isNew(href)) {
+        link.appendChild(makeBadge());
+      }
     });
 
     // 현재 페이지 타이틀
-    if (isNew(window.location.pathname)) {
-      const title = document.querySelector('h1.article-title');
-      if (title) addBadge(title);
+    const title = document.querySelector('h1.article-title');
+    if (title && !title.querySelector('.new-badge')) {
+      if (isNew(window.location.pathname)) {
+        title.appendChild(makeBadge());
+      }
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyBadges);
-  } else {
-    applyBadges();
-  }
-  document.addEventListener('nav', applyBadges);
-
-  // 사이드바 동적 렌더링 대응
-  const observer = new MutationObserver(() => applyBadges());
-  observer.observe(document.body, { childList: true, subtree: true });
+  document.addEventListener('nav', () => {
+    setTimeout(applyBadges, 500);
+    setTimeout(applyBadges, 1500);
+  });
 })();
