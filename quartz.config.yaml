@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: en-US
-  baseUrl: git remote set-url origin https://github.com/Ziikite/my-quartz.git
+  baseUrl: Ziikite.github.io/my-quartz
   ignorePatterns:
     - private
     - templates
