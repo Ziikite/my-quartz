@@ -592,3 +592,60 @@ ul.page-listing > li {
 .section-li ul.tags li {
   display: inline-flex !important;
 }
+
+/* ===== Folder listing - section layout ===== */
+li.section-li div.section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  padding: 1.25rem 0 !important;
+  border-bottom: 1px solid var(--g100) !important;
+}
+
+li.section-li div.section p.meta {
+  font-size: 0.75rem !important;
+  color: var(--g400) !important;
+  margin: 0 !important;
+  order: 1 !important;
+}
+
+li.section-li div.section div.desc {
+  order: 2 !important;
+  margin: 0 !important;
+}
+
+li.section-li div.section div.desc h3 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  letter-spacing: -0.02em !important;
+}
+
+li.section-li div.section div.desc h3 a {
+  color: var(--g900) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+li.section-li div.section div.desc h3 a:hover {
+  color: var(--toss-blue) !important;
+}
+
+li.section-li div.section ul.tags {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  order: 3 !important;
+}
+
+li.section-li div.section ul.tags li {
+  display: inline-flex !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
