@@ -379,3 +379,39 @@ footer a { color: var(--g500) !important; font-weight: 400 !important; text-deco
   .center { padding: 1.25rem !important; }
   h1.article-title { font-size: 1.4rem !important; }
 }
+
+/* ===== Properties / Tags fix ===== */
+.markdown-rendered table,
+article table {
+  display: block !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.markdown-rendered table td,
+.markdown-rendered table th {
+  white-space: nowrap !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  vertical-align: middle !important;
+}
+
+/* Properties 첫 번째 컬럼 (tags 라벨) */
+.markdown-rendered table td:first-child,
+.markdown-rendered table th:first-child {
+  width: 80px !important;
+  min-width: 80px !important;
+  color: var(--g500) !important;
+  font-size: 0.8rem !important;
+}
+
+/* 태그 컨테이너 */
+.markdown-rendered table td:last-child {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  align-items: center !important;
+  white-space: normal !important;
+}
