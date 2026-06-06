@@ -469,3 +469,24 @@ table.note-properties td:last-child {
   word-break: break-word !important;
   overflow-wrap: anywhere !important;
 }
+
+/* ===== note-properties 완전 fix ===== */
+.note-properties-table {
+  table-layout: auto !important;
+}
+
+td.note-properties-value {
+  overflow: hidden !important;
+  word-break: break-word !important;
+}
+
+span.note-properties-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.25rem !important;
+  white-space: normal !important;
+}
+
+span.note-properties-separator {
+  display: none !important;
+}
