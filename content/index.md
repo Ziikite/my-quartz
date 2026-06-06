@@ -15,11 +15,10 @@ title: Welcome
 - `Sources/UX & Research` — UX 리서치, ResearchOps, 리서치 방법론, AI 기반 UXR
 - `Sources/AI & Automation` — AI 에이전트, AI 논문, 자동화, AI 기반 지식관리
 - `Sources/Product & Business` — 제품관리, 서비스 구조, 비즈니스/고객 관점 자료
-- `Sources/Career` — 면접, 커리어, 포트폴리오 관련 원문 자료
 
 ### 구조화 요약
 
 - `Summaries/UX & Research`
 - `Summaries/AI & Automation`
 - `Summaries/Product & Business`
-- `Summaries/Career`
+
