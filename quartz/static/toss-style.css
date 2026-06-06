@@ -170,7 +170,3 @@ a.internal-link, a.internal {
   text-decoration: none !important;
 }
 
-/* Fix column width */
-.page {
-  grid-template-columns: 320px 1fr 320px !important;
-}
