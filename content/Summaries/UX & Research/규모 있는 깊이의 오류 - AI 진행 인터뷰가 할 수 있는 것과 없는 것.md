@@ -171,6 +171,7 @@ AI 진행 인터뷰를 도입하기 전에 확인할 질문:
 ## 연결된 노트
 
 - 원문/번역 원문: [[2026-05-28 The fallacy of depth at scale - 한국어 번역]]
+  - 원문 파일 경로: `Sources/UX & Research/2026-05-28 The fallacy of depth at scale - 한국어 번역.md`
 - 같은 주제의 관련 요약:
   - [[A-B Testing 101 요약 - 신뢰할 수 있는 UX 실험 설계]]
   - [[학계 UX와 업계 UX 사이에서 균형 잡기]]
@@ -179,3 +180,4 @@ AI 진행 인터뷰를 도입하기 전에 확인할 질문:
   - [[질적 연구와 AI - 인간 해석과 자동화 사이의 경계]]
   - [[AI는 UI 문제를 얼마나 신뢰성 있게 찾아낼까 - MeasuringU 연구 요약]]
   - [[How to AI UXR - AI-Augmented ResearchOps 맵]]
+

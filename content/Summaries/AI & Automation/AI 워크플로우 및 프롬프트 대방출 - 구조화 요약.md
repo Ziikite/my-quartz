@@ -306,3 +306,9 @@ Obsidian을 중심 저장소로 두고 Readwise, Paperpile, Apple Notes, Cursor,
 - [[AI Writing]]
 - [[Weekly Review]]
 - [[Knowledge Management]]
+
+## 연결된 노트
+
+- 원문/번역 원문: 보존 원문 파일 없음
+  - 원문 파일 경로: `원문 소스 파일 미생성`
+  - 웹 원문: https://publish.obsidian.md/lifidea/Publish/AI+for+Self-growth+(KR)/3.+%EB%82%98%EC%9D%98+AI+%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0+%EB%B0%8F+%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8+%EB%8C%80%EB%B0%A9%EC%B6%9C!+(2025.05)

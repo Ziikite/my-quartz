@@ -213,3 +213,5 @@ Sales team은 이 persona를 상대로 objection handling, value proposition, pi
 ## 연결된 노트
 
 - 원문/번역 원문: [[2026-05-04 Synthetic Customers Earn Their Stripes - 한국어 번역]]
+  - 원문 파일 경로: `Sources/AI & Automation/2026-05-04 Synthetic Customers Earn Their Stripes - 한국어 번역.md`
+

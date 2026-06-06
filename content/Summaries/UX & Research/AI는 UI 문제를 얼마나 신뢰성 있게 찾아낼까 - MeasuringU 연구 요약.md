@@ -174,6 +174,7 @@ AI 분석 결과를 받은 뒤:
 ## 연결된 노트
 
 - 원문/번역 원문: [[2026-04-28 How Reliable Is AI at Finding UI Problems - 한국어 번역]]
+  - 원문 파일 경로: `Sources/UX & Research/2026-04-28 How Reliable Is AI at Finding UI Problems - 한국어 번역.md`
 - 같은 주제의 관련 요약:
   - [[A-B Testing 101 요약 - 신뢰할 수 있는 UX 실험 설계]]
   - [[학계 UX와 업계 UX 사이에서 균형 잡기]]
@@ -182,3 +183,4 @@ AI 분석 결과를 받은 뒤:
   - [[질적 연구와 AI - 인간 해석과 자동화 사이의 경계]]
   - [[규모 있는 깊이의 오류 - AI 진행 인터뷰가 할 수 있는 것과 없는 것]]
   - [[How to AI UXR - AI-Augmented ResearchOps 맵]]
+

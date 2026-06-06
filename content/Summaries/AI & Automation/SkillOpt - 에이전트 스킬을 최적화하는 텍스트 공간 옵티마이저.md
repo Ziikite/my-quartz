@@ -228,5 +228,7 @@ SkillOpt식 접근:
 ## 연결된 노트
 
 - 원문/번역 원문: [[2605.23904 SkillOpt - Self-Evolving Agent Skills - 한국어 번역]]
+  - 원문 파일 경로: `Sources/AI & Automation/2605.23904 SkillOpt - Self-Evolving Agent Skills - 한국어 번역.md`
 - 같은 주제의 관련 요약:
   - [[SkillOpt 프로젝트 페이지 - frozen agent를 위한 skill optimization]]
+

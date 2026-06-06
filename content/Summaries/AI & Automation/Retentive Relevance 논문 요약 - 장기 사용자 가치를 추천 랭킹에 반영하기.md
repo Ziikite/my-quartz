@@ -258,3 +258,5 @@ UX 리서치가 제품 시스템에 들어가는 한 가지 모범 사례로 볼
 ## 연결된 노트
 
 - 원문/번역 원문: [[Retentive Relevance Capturing Long-Term User Value in Recommendation Systems - 번역 원문]]
+  - 원문 파일 경로: `Sources/AI & Automation/Retentive Relevance Capturing Long-Term User Value in Recommendation Systems - 번역 원문.md`
+

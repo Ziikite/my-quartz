@@ -225,7 +225,11 @@ self-serve template로 처리 가능한지, human researcher가 필요한지 판
 ## 연결된 노트
 
 - 원문/번역 원문: [[2026-05-21 How to AI UXR - AI 증강 ResearchOps 맵 - 한국어 번역]]
+  - 원문 파일 경로: `Sources/UX & Research/2026-05-21 How to AI UXR - AI 증강 ResearchOps 맵 - 한국어 번역.md`
+- 추가 원문 보존본: [[2026-05-21 How to AI UXR - A Map for Building AI-Augmented Research Operations - 원문]]
+  - 원문 파일 경로: `Sources/UX & Research/2026-05-21 How to AI UXR - A Map for Building AI-Augmented Research Operations - 원문.md`
 - 같은 주제의 관련 요약:
   - [[질적 연구와 AI - 인간 해석과 자동화 사이의 경계]]
   - [[AI는 UI 문제를 얼마나 신뢰성 있게 찾아낼까 - MeasuringU 연구 요약]]
   - [[규모 있는 깊이의 오류 - AI 진행 인터뷰가 할 수 있는 것과 없는 것]]
+
