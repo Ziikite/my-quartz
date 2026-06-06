@@ -79,36 +79,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let newFiles = [];
 
-  // JSON 먼저 로드
   fetch('/my-quartz/static/new-files.json')
     .then(r => r.json())
     .then(data => {
       newFiles = data.map(normalize);
       applyBadges();
-      // 사이드바 동적 렌더링 대응: 1초, 2초, 3초 후 재시도
       setTimeout(applyBadges, 1000);
       setTimeout(applyBadges, 2000);
-      setTimeout(applyBadges, 3000);
     })
     .catch(() => {});
 
   function isNew(href) {
-    const normalized = normalize(decodeURIComponent(href)
-      .replace('/my-quartz/', '')
-      .replace(/\/$/, ''));
+    const normalized = normalize(href)
+      .replace('ziikite.github.io/my-quartz/', '')
+      .replace(/\/$/, '');
     return newFiles.some(f => {
-      return normalized === f ||
-        normalized.endsWith(f) ||
-        f.endsWith(normalized) ||
-        normalized.replace(/-+/g, '-') === f.replace(/-+/g, '-');
+      const nf = normalize(f);
+      return normalized === nf ||
+        normalized.endsWith(nf) ||
+        nf.endsWith(normalized);
     });
   }
 
   function applyBadges() {
-    // 사이드바 파일 링크
-    document.querySelectorAll('.nav-file-title a').forEach(link => {
+    // 핵심: a.nav-file-title (a 태그 자체가 nav-file-title 클래스)
+    document.querySelectorAll('a.nav-file-title').forEach(link => {
       if (link.querySelector('.new-badge')) return;
-      const href = link.getAttribute('href') || '';
+      const href = link.href || '';
       if (isNew(href)) {
         link.appendChild(makeBadge());
       }
@@ -117,14 +114,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // 현재 페이지 타이틀
     const title = document.querySelector('h1.article-title');
     if (title && !title.querySelector('.new-badge')) {
-      if (isNew(window.location.pathname)) {
+      if (isNew(window.location.href)) {
         title.appendChild(makeBadge());
       }
     }
   }
 
   document.addEventListener('nav', () => {
-    setTimeout(applyBadges, 500);
-    setTimeout(applyBadges, 1500);
+    setTimeout(applyBadges, 300);
+    setTimeout(applyBadges, 1000);
   });
+
+  const observer = new MutationObserver(() => applyBadges());
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
