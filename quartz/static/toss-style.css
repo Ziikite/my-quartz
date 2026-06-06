@@ -547,3 +547,48 @@ html[saved-theme] body .nav-files-container .nav-file-title a {
   font-size: 12px !important;
   line-height: 1.4 !important;
 }
+
+/* ===== Folder listing page layout ===== */
+.page-listing .section-li,
+ul.page-listing > li {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 1rem 0 !important;
+  border-bottom: 1px solid var(--g100) !important;
+}
+
+/* 날짜 */
+.page-listing .meta,
+.section-li p.meta {
+  font-size: 0.75rem !important;
+  color: var(--g400) !important;
+  margin: 0 0 0.25rem !important;
+  order: 1 !important;
+}
+
+/* 제목 */
+.page-listing .section-li a,
+.section-li > a {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--g900) !important;
+  text-decoration: none !important;
+  margin-bottom: 0.4rem !important;
+  order: 2 !important;
+}
+.page-listing .section-li a:hover { color: var(--toss-blue) !important; }
+
+/* 태그 가로 정렬 */
+.page-listing ul.tags,
+.section-li ul.tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.3rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  order: 3 !important;
+}
+.section-li ul.tags li {
+  display: inline-flex !important;
+}
