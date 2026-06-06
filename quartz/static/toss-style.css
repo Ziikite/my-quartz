@@ -1,172 +1,359 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+/* =====================
+   TOKENS
+===================== */
 :root {
   --toss-blue: #3182F6;
-  --toss-blue-hover: #1B6EF3;
   --toss-blue-light: #EBF3FE;
-  --toss-gray-50: #F9FAFB;
-  --toss-gray-100: #F2F4F6;
-  --toss-gray-200: #E5E8EB;
-  --toss-gray-300: #D1D6DB;
-  --toss-gray-400: #B0B8C1;
-  --toss-gray-500: #8B95A1;
-  --toss-gray-600: #6B7684;
-  --toss-gray-700: #4E5968;
-  --toss-gray-800: #333D4B;
-  --toss-gray-900: #191F28;
-  --toss-radius: 12px;
-  --toss-radius-sm: 8px;
-  --toss-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --toss-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  --toss-shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+  --g50: #F9FAFB;
+  --g100: #F2F4F6;
+  --g200: #E5E8EB;
+  --g300: #D1D6DB;
+  --g400: #B0B8C1;
+  --g500: #8B95A1;
+  --g600: #6B7684;
+  --g700: #4E5968;
+  --g800: #333D4B;
+  --g900: #191F28;
+  --r8: 8px;
+  --r12: 12px;
+  --sh: 0 2px 8px rgba(0,0,0,0.08);
+  --sh-sm: 0 1px 3px rgba(0,0,0,0.06);
 }
 
-* { box-sizing: border-box; }
+/* =====================
+   BASE
+===================== */
+*, *::before, *::after { box-sizing: border-box; }
 
-body {
+html, body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  background: var(--toss-gray-50) !important;
-  color: var(--toss-gray-900) !important;
   -webkit-font-smoothing: antialiased !important;
+  background: var(--g50) !important;
+  color: var(--g900) !important;
 }
 
-.page-header {
-  background: rgba(255,255,255,0.9) !important;
-  backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid var(--toss-gray-200) !important;
-  padding: 0.75rem 1.5rem !important;
+/* =====================
+   ROOT LAYOUT — 절대 건드리지 않음
+   Quartz grid는 그대로 두고
+   색상/스타일만 오버라이드
+===================== */
+#quartz-root {
+  background: var(--g50) !important;
 }
 
-.page-title { font-size: 1rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
-.page-title a { color: var(--toss-gray-900) !important; text-decoration: none !important; }
-
-.left.sidebar { background: transparent !important; padding: 1.25rem 0.75rem !important; }
-.right.sidebar { background: transparent !important; padding: 1.25rem 0.75rem !important; }
-
-.folder-container.nav-folder-title {
-  padding: 0.3rem 0.6rem !important;
-  border-radius: var(--toss-radius-sm) !important;
-  transition: background 0.12s ease !important;
-}
-.folder-container.nav-folder-title:hover { background: var(--toss-gray-100) !important; }
-.folder-title { font-weight: 600 !important; color: var(--toss-gray-800) !important; font-size: 0.875rem !important; }
-
-.nav-file-title { padding: 0.3rem 0.6rem !important; border-radius: var(--toss-radius-sm) !important; transition: background 0.12s ease !important; }
-.nav-file-title:hover { background: var(--toss-gray-100) !important; }
-.nav-file-title a { color: var(--toss-gray-700) !important; text-decoration: none !important; font-weight: 400 !important; font-size: 0.875rem !important; }
-
-#search-button {
-  background: white !important;
-  border: 1px solid var(--toss-gray-200) !important;
-  border-radius: var(--toss-radius-sm) !important;
-  color: var(--toss-gray-500) !important;
-  font-size: 0.875rem !important;
-  box-shadow: var(--toss-shadow-sm) !important;
-  width: 100% !important;
-  padding: 0.5rem 0.75rem !important;
-  font-family: 'Pretendard', sans-serif !important;
-}
-#search-button:hover { border-color: var(--toss-blue) !important; box-shadow: 0 0 0 3px var(--toss-blue-light) !important; }
-
-.center { background: transparent !important; max-width: 720px !important; }
-
-article.popover-hint {
-  background: white !important;
-  border-radius: var(--toss-radius) !important;
-  box-shadow: var(--toss-shadow) !important;
-  border: 1px solid var(--toss-gray-200) !important;
-  padding: 2.5rem 2.75rem !important;
-  margin-bottom: 1.5rem !important;
+/* =====================
+   LEFT SIDEBAR
+===================== */
+.left.sidebar {
+  padding: 1.25rem 0.5rem !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Pretendard', sans-serif !important;
+/* Logo */
+.page-title {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
   letter-spacing: -0.03em !important;
-  color: var(--toss-gray-900) !important;
-  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
 }
-h1.article-title { font-size: 1.75rem !important; margin-bottom: 0.25rem !important; }
-h2 { font-size: 1.35rem !important; border-bottom: 1.5px solid var(--toss-gray-200) !important; padding-bottom: 0.4rem !important; margin-top: 2rem !important; }
-h3 { font-size: 1.1rem !important; }
+.page-title a {
+  color: var(--g900) !important;
+  text-decoration: none !important;
+}
 
-p, li { font-size: 0.975rem !important; line-height: 1.85 !important; color: var(--toss-gray-800) !important; }
+/* Search button */
+.search-button {
+  background: white !important;
+  border: 1.5px solid var(--g200) !important;
+  border-radius: var(--r8) !important;
+  color: var(--g500) !important;
+  font-size: 0.85rem !important;
+  padding: 0.45rem 0.75rem !important;
+  box-shadow: var(--sh-sm) !important;
+  font-family: 'Pretendard', sans-serif !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+.search-button:hover {
+  border-color: var(--toss-blue) !important;
+  box-shadow: 0 0 0 3px var(--toss-blue-light) !important;
+}
 
-a { color: var(--toss-blue) !important; text-decoration: none !important; font-weight: 500 !important; }
-a:hover { opacity: 0.75 !important; }
-a.internal { border-bottom: 1px solid var(--toss-blue-light) !important; }
-a.internal:hover { border-bottom-color: var(--toss-blue) !important; opacity: 1 !important; }
+/* Explorer */
+.folder-container.nav-folder-title {
+  border-radius: var(--r8) !important;
+  padding: 0.25rem 0.5rem !important;
+  transition: background 0.1s !important;
+}
+.folder-container.nav-folder-title:hover {
+  background: var(--g100) !important;
+}
+.folder-title {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--g800) !important;
+}
+.nav-file-title {
+  border-radius: var(--r8) !important;
+  padding: 0.2rem 0.5rem !important;
+  transition: background 0.1s !important;
+}
+.nav-file-title:hover {
+  background: var(--g100) !important;
+}
+.nav-file-title a {
+  font-size: 0.83rem !important;
+  color: var(--g700) !important;
+  text-decoration: none !important;
+  font-weight: 400 !important;
+}
+
+/* =====================
+   CENTER / ARTICLE
+===================== */
+.center {
+  padding: 0 1rem !important;
+}
+
+/* page-header (title + meta) */
+.page-header {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+h1.article-title {
+  font-family: 'Pretendard', sans-serif !important;
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+  color: var(--g900) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.25rem !important;
+}
 
 .content-meta {
   font-size: 0.8rem !important;
-  color: var(--toss-gray-500) !important;
+  color: var(--g500) !important;
+  gap: 0.5rem !important;
   margin-bottom: 1.5rem !important;
-  padding-bottom: 1rem !important;
-  border-bottom: 1px solid var(--toss-gray-100) !important;
 }
 
-code {
-  background: var(--toss-gray-100) !important;
-  border: 1px solid var(--toss-gray-200) !important;
-  border-radius: 4px !important;
-  padding: 0.15em 0.4em !important;
-  font-size: 0.85em !important;
-  color: #d63384 !important;
-}
-pre { background: var(--toss-gray-900) !important; border-radius: var(--toss-radius-sm) !important; padding: 1.25rem !important; }
-pre code { background: transparent !important; border: none !important; color: #e2e8f0 !important; padding: 0 !important; }
-
-blockquote {
-  border-left: 3px solid var(--toss-blue) !important;
-  background: var(--toss-blue-light) !important;
-  border-radius: 0 var(--toss-radius-sm) var(--toss-radius-sm) 0 !important;
-  margin: 1.5rem 0 !important;
-  padding: 1rem 1.25rem !important;
+/* Article card */
+article.popover-hint {
+  background: white !important;
+  border-radius: var(--r12) !important;
+  border: 1px solid var(--g200) !important;
+  box-shadow: var(--sh) !important;
+  padding: 2rem 2.5rem !important;
 }
 
-table { border-collapse: collapse !important; width: 100% !important; border: 1px solid var(--toss-gray-200) !important; font-size: 0.9rem !important; }
-th { background: var(--toss-gray-100) !important; color: var(--toss-gray-700) !important; font-weight: 600 !important; padding: 0.65rem 1rem !important; text-align: left !important; }
-td { padding: 0.65rem 1rem !important; border-top: 1px solid var(--toss-gray-100) !important; }
-tr:hover td { background: var(--toss-gray-50) !important; }
-
-.graph-outer { background: white !important; border-radius: var(--toss-radius) !important; border: 1px solid var(--toss-gray-200) !important; box-shadow: var(--toss-shadow) !important; overflow: hidden !important; }
-.graph-outer h3 { font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.08em !important; color: var(--toss-gray-500) !important; padding: 0.75rem 1rem 0 !important; border-bottom: none !important; margin: 0 !important; }
-
-.backlinks { background: white !important; border-radius: var(--toss-radius) !important; border: 1px solid var(--toss-gray-200) !important; box-shadow: var(--toss-shadow) !important; padding: 1rem 1.25rem !important; }
-.backlinks > h3 { font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.08em !important; color: var(--toss-gray-500) !important; border-bottom: none !important; }
-
-a.tag-link, .tag {
-  display: inline-flex !important;
-  background: var(--toss-gray-100) !important;
-  color: var(--toss-gray-700) !important;
-  border-radius: 999px !important;
-  padding: 0.2rem 0.75rem !important;
-  font-size: 0.78rem !important;
-  font-weight: 500 !important;
-  border: 1px solid var(--toss-gray-200) !important;
-  text-decoration: none !important;
-  margin: 0.15rem !important;
+/* Typography inside article */
+article h1, article h2, article h3,
+article h4, article h5, article h6 {
+  font-family: 'Pretendard', sans-serif !important;
+  letter-spacing: -0.03em !important;
+  color: var(--g900) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
 }
-a.tag-link:hover, .tag:hover { background: var(--toss-blue-light) !important; color: var(--toss-blue) !important; border-color: var(--toss-blue) !important; opacity: 1 !important; }
+article h2 {
+  font-size: 1.25rem !important;
+  border-bottom: 1.5px solid var(--g200) !important;
+  padding-bottom: 0.35rem !important;
+  margin-top: 2rem !important;
+}
+article h3 { font-size: 1.05rem !important; }
 
-.page-footer { font-size: 0.8rem !important; color: var(--toss-gray-400) !important; border-top: 1px solid var(--toss-gray-200) !important; padding: 1.25rem 0 !important; }
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--toss-gray-300); border-radius: 999px; }
-
-@media (max-width: 768px) {
-  article.popover-hint { padding: 1.5rem !important; }
-  .center { max-width: 100% !important; }
+article p, article li {
+  font-size: 0.95rem !important;
+  line-height: 1.85 !important;
+  color: var(--g800) !important;
 }
 
-/* Fix link colors - override Quartz defaults */
-.markdown-preview-view a,
-.markdown-rendered a,
+/* Links */
 article a {
   color: var(--toss-blue) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
 }
-a.internal-link, a.internal {
+article a:hover {
+  text-decoration: underline !important;
+}
+
+/* Code */
+article code {
+  background: var(--g100) !important;
+  border: 1px solid var(--g200) !important;
+  border-radius: 4px !important;
+  padding: 0.1em 0.4em !important;
+  font-size: 0.83em !important;
+  color: #c7254e !important;
+}
+article pre {
+  background: var(--g900) !important;
+  border-radius: var(--r8) !important;
+  padding: 1.25rem !important;
+}
+article pre code {
+  background: transparent !important;
+  border: none !important;
+  color: #e2e8f0 !important;
+  padding: 0 !important;
+}
+
+/* Blockquote */
+article blockquote {
+  border-left: 3px solid var(--toss-blue) !important;
+  background: var(--toss-blue-light) !important;
+  border-radius: 0 var(--r8) var(--r8) 0 !important;
+  padding: 0.9rem 1.25rem !important;
+  margin: 1.25rem 0 !important;
+}
+article blockquote p { color: var(--g800) !important; margin: 0 !important; }
+
+/* Table */
+article table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  border: 1px solid var(--g200) !important;
+  border-radius: var(--r8) !important;
+  overflow: hidden !important;
+  font-size: 0.88rem !important;
+  table-layout: auto !important;
+}
+article th {
+  background: var(--g100) !important;
+  color: var(--g700) !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 0.9rem !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--g200) !important;
+  white-space: nowrap !important;
+}
+article td {
+  padding: 0.6rem 0.9rem !important;
+  border-top: 1px solid var(--g100) !important;
+  vertical-align: top !important;
+  word-break: break-word !important;
+}
+article tr:hover td { background: var(--g50) !important; }
+
+/* Properties/frontmatter table — 태그 깨짐 방지 */
+.markdown-rendered table td,
+.markdown-rendered table th {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  writing-mode: horizontal-tb !important;
+}
+
+/* Tags */
+a.tag-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--g100) !important;
+  color: var(--g700) !important;
+  border-radius: 999px !important;
+  padding: 0.15rem 0.65rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--g200) !important;
+  text-decoration: none !important;
+  margin: 0.1rem 0.15rem !important;
+  white-space: nowrap !important;
+  transition: all 0.12s ease !important;
+}
+a.tag-link:hover {
+  background: var(--toss-blue-light) !important;
   color: var(--toss-blue) !important;
+  border-color: var(--toss-blue) !important;
   text-decoration: none !important;
 }
 
+/* =====================
+   RIGHT SIDEBAR
+===================== */
+.right.sidebar {
+  padding: 1.25rem 0.5rem !important;
+  gap: 0.75rem !important;
+}
+
+.graph {
+  background: white !important;
+  border-radius: var(--r12) !important;
+  border: 1px solid var(--g200) !important;
+  box-shadow: var(--sh-sm) !important;
+  overflow: hidden !important;
+  padding: 0.75rem !important;
+}
+.graph h3 {
+  font-size: 0.72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--g500) !important;
+  font-weight: 600 !important;
+  margin: 0 0 0.5rem !important;
+  border: none !important;
+}
+
+.toc {
+  background: white !important;
+  border-radius: var(--r12) !important;
+  border: 1px solid var(--g200) !important;
+  box-shadow: var(--sh-sm) !important;
+  padding: 0.75rem 1rem !important;
+}
+.toc h3 {
+  font-size: 0.72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--g500) !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+.toc-content a {
+  font-size: 0.82rem !important;
+  color: var(--g600) !important;
+  text-decoration: none !important;
+  font-weight: 400 !important;
+}
+.toc-content a:hover { color: var(--toss-blue) !important; }
+
+.backlinks {
+  background: white !important;
+  border-radius: var(--r12) !important;
+  border: 1px solid var(--g200) !important;
+  box-shadow: var(--sh-sm) !important;
+  padding: 0.75rem 1rem !important;
+}
+.backlinks h3 {
+  font-size: 0.72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--g500) !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  border: none !important;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  font-size: 0.78rem !important;
+  color: var(--g400) !important;
+  border-top: 1px solid var(--g200) !important;
+  margin-top: 1.5rem !important;
+  padding-top: 1rem !important;
+}
+footer a { color: var(--g500) !important; font-weight: 400 !important; }
+
+/* =====================
+   SCROLLBAR
+===================== */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--g300); border-radius: 999px; }
