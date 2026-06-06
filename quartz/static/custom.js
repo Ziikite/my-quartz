@@ -54,17 +54,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== NEW badge for recently updated files =====
 (function() {
   const DAYS_THRESHOLD = 7;
+  const BASE = document.querySelector('body')?.dataset?.basepath || '';
 
-  function isNew(dateStr) {
-    if (!dateStr) return false;
-    const date = new Date(dateStr);
-    const now = new Date();
-    const diffDays = (now - date) / (1000 * 60 * 60 * 24);
-    return diffDays <= DAYS_THRESHOLD;
+  function daysDiff(dateStr) {
+    if (!dateStr) return 999;
+    const diff = (Date.now() - new Date(dateStr).getTime()) / (1000 * 60 * 60 * 24);
+    return diff;
   }
 
-  function addNewBadge(el) {
-    if (el.querySelector('.new-badge')) return;
+  function makeBadge() {
     const badge = document.createElement('span');
     badge.className = 'new-badge';
     badge.textContent = 'N';
@@ -72,58 +70,69 @@ document.addEventListener("DOMContentLoaded", () => {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
+      min-width: 16px;
       height: 16px;
       background: #3182F6;
       color: white;
-      border-radius: 50%;
+      border-radius: 999px;
       font-size: 9px;
       font-weight: 700;
       margin-left: 5px;
+      padding: 0 4px;
       vertical-align: middle;
       flex-shrink: 0;
       font-family: 'Pretendard', sans-serif;
+      letter-spacing: 0;
+      line-height: 1;
     `;
-    el.appendChild(badge);
+    return badge;
   }
 
-  async function checkAndBadge() {
-    // content-meta의 날짜 기준으로 현재 페이지 뱃지
-    const metaEl = document.querySelector('.content-meta');
-    if (metaEl) {
-      const dateMatch = metaEl.textContent.match(/\w{3} \d{1,2}, \d{4}/);
-      if (dateMatch && isNew(dateMatch[0])) {
-        const title = document.querySelector('h1.article-title');
-        if (title) addNewBadge(title);
-      }
+  async function applyBadges() {
+    // contentIndex.json에서 모든 파일의 날짜 가져오기
+    let index;
+    try {
+      const res = await fetch(`${BASE}/static/contentIndex.json`);
+      index = await res.json();
+    } catch(e) { return; }
+
+    // 날짜 맵 생성 {slug: date}
+    const dateMap = {};
+    for (const [slug, data] of Object.entries(index)) {
+      if (data.date) dateMap[slug] = data.date;
     }
 
-    // 사이드바 네비게이션 파일들에 뱃지 (frontmatter의 날짜 기준)
-    // Quartz가 생성한 날짜 데이터를 활용
-    const navFiles = document.querySelectorAll('.nav-file-title');
-    navFiles.forEach(file => {
-      const link = file.querySelector('a');
-      if (!link) return;
-      // 현재 페이지가 최근 7일 내라면 뱃지 (간단 구현: 현재 페이지와 같은 파일이면)
-      const href = link.getAttribute('href');
-      if (href && window.location.pathname.includes(href.replace(/^\/my-quartz/, ''))) {
-        const metaDate = document.querySelector('.content-meta');
-        if (metaDate) {
-          const dateMatch = metaDate.textContent.match(/\w{3} \d{1,2}, \d{4}/);
-          if (dateMatch && isNew(dateMatch[0])) {
-            addNewBadge(link);
-          }
-        }
+    // 사이드바 네비게이션 링크에 뱃지 추가
+    document.querySelectorAll('.nav-file-title a').forEach(link => {
+      if (link.querySelector('.new-badge')) return;
+      const href = link.getAttribute('href') || '';
+      // href에서 slug 추출
+      const slug = href.replace(BASE, '').replace(/^\//, '').replace(/\/$/, '');
+      const date = dateMap[slug];
+      if (date && daysDiff(date) <= DAYS_THRESHOLD) {
+        link.appendChild(makeBadge());
       }
     });
+
+    // 현재 페이지 타이틀에도 뱃지
+    const currentSlug = window.location.pathname
+      .replace(BASE, '').replace(/^\//, '').replace(/\/$/, '') || 'index';
+    const currentDate = dateMap[currentSlug];
+    if (currentDate && daysDiff(currentDate) <= DAYS_THRESHOLD) {
+      const title = document.querySelector('h1.article-title');
+      if (title && !title.querySelector('.new-badge')) {
+        title.appendChild(makeBadge());
+      }
+    }
   }
 
+  // 초기 실행
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkAndBadge);
+    document.addEventListener('DOMContentLoaded', applyBadges);
   } else {
-    checkAndBadge();
+    applyBadges();
   }
 
-  // SPA navigation 대응
-  document.addEventListener('nav', checkAndBadge);
+  // SPA 페이지 이동 대응
+  document.addEventListener('nav', applyBadges);
 })();
