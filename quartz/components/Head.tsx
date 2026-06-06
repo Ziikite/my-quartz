@@ -107,6 +107,7 @@ export default (() => {
           }
         })}
       <script src="/my-quartz/custom.js" defer></script>
+    <link rel="stylesheet" href="/my-quartz/toss-style.css"/>
     </head>
     )
   }
