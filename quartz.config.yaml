@@ -16,18 +16,18 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Pretendard
+      body: Pretendard
       code: IBM Plex Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
+        light: "#ffffff"
+        lightgray: "#f2f4f6"
+        gray: "#b0b8c1"
+        darkgray: "#4e5968"
+        dark: "#191f28"
+        secondary: "#3182f6"
+        tertiary: "#1b6ef3"
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#fff23688"
       darkMode:
@@ -37,7 +37,7 @@ configuration:
         darkgray: "#d4d4d4"
         dark: "#ebebec"
         secondary: "#7b97aa"
-        tertiary: "#84a59d"
+        tertiary: "#1b6ef3"
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
