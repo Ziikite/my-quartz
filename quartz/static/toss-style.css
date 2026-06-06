@@ -674,3 +674,20 @@ html[saved-theme="light"] li.section-li ul.tags li a.internal.tag-link {
   padding: 0.1rem 0.5rem !important;
   line-height: 1.6 !important;
 }
+
+/* ===== section listing - plain tags (no background) ===== */
+html[saved-theme] li.section-li ul.tags li a.internal.tag-link,
+html[saved-theme="light"] li.section-li ul.tags li a.internal.tag-link {
+  background: transparent !important;
+  border: none !important;
+  color: var(--g500) !important;
+  font-size: 0.75rem !important;
+  padding: 0 !important;
+  font-weight: 400 !important;
+}
+html[saved-theme] li.section-li ul.tags li a.internal.tag-link:hover,
+html[saved-theme="light"] li.section-li ul.tags li a.internal.tag-link:hover {
+  color: var(--toss-blue) !important;
+  background: transparent !important;
+  border: none !important;
+}
