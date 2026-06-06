@@ -357,3 +357,36 @@ footer a { color: var(--g500) !important; font-weight: 400 !important; }
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--g300); border-radius: 999px; }
+
+/* =====================
+   LAYOUT MAX-WIDTH FIX
+===================== */
+#quartz-body {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+.page#quartz-root {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+.center {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 1200px 이상 넓은 화면에서 가운데 컬럼 최대 너비 제한 */
+@media (min-width: 1200px) {
+  #quartz-body {
+    grid-template-columns: 280px minmax(0, 760px) 280px !important;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  #quartz-body {
+    grid-template-columns: 280px minmax(0, 1fr) !important;
+  }
+}
