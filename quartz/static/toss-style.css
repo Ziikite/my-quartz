@@ -1,251 +1,259 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
-/* =====================
-   TOKENS
-===================== */
+/* ==========================================
+   TOSS.TECH STYLE — Quartz CSS variable override
+========================================== */
+
+/* 1. Quartz 색상 변수 완전 교체 */
 :root {
-  --toss-blue: #3182F6;
-  --toss-blue-light: #EBF3FE;
-  --g50: #F9FAFB;
-  --g100: #F2F4F6;
-  --g200: #E5E8EB;
-  --g300: #D1D6DB;
-  --g400: #B0B8C1;
-  --g500: #8B95A1;
-  --g600: #6B7684;
-  --g700: #4E5968;
-  --g800: #333D4B;
-  --g900: #191F28;
-  --r8: 8px;
-  --r12: 12px;
-  --sh: 0 2px 8px rgba(0,0,0,0.08);
-  --sh-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --light: #ffffff !important;
+  --lightgray: #f2f4f6 !important;
+  --gray: #b0b8c1 !important;
+  --darkgray: #4e5968 !important;
+  --dark: #191f28 !important;
+  --secondary: #3182f6 !important;
+  --tertiary: #1b6ef3 !important;
+  --highlight: rgba(49,130,246,0.08) !important;
+  --textHighlight: rgba(49,130,246,0.15) !important;
+
+  --toss-blue: #3182f6;
+  --toss-blue-light: #ebf3fe;
+  --g50: #f9fafb;
+  --g100: #f2f4f6;
+  --g200: #e5e8eb;
+  --g300: #d1d6db;
+  --g400: #b0b8c1;
+  --g500: #8b95a1;
+  --g600: #6b7684;
+  --g700: #4e5968;
+  --g800: #333d4b;
+  --g900: #191f28;
 }
 
-/* =====================
-   BASE
-===================== */
-*, *::before, *::after { box-sizing: border-box; }
-
-html, body {
+/* 2. 폰트 전체 교체 */
+* {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  -webkit-font-smoothing: antialiased !important;
-  background: var(--g50) !important;
-  color: var(--g900) !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* =====================
-   ROOT LAYOUT — 절대 건드리지 않음
-   Quartz grid는 그대로 두고
-   색상/스타일만 오버라이드
-===================== */
-#quartz-root {
-  background: var(--g50) !important;
+/* 3. 배경 흰색 */
+body, #quartz-root, #quartz-body {
+  background: #ffffff !important;
 }
 
-/* =====================
-   LEFT SIDEBAR
-===================== */
+/* ==========================================
+   LAYOUT — 토스테크처럼 중앙 정렬 + max-width
+========================================== */
+#quartz-body {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* 넓은 화면: 3컬럼 균형 */
+@media (min-width: 1200px) {
+  #quartz-body {
+    grid-template-columns: 240px 1fr 240px !important;
+    column-gap: 2rem !important;
+  }
+}
+
+/* 중간 화면 */
+@media (min-width: 800px) and (max-width: 1199px) {
+  #quartz-body {
+    grid-template-columns: 220px 1fr !important;
+  }
+}
+
+/* ==========================================
+   SIDEBAR LEFT
+========================================== */
 .left.sidebar {
-  padding: 1.25rem 0.5rem !important;
+  background: #ffffff !important;
+  border-right: 1px solid var(--g200) !important;
+  padding: 1.5rem 1rem !important;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
 }
 
-/* Logo */
 .page-title {
-  font-size: 1.05rem !important;
+  font-size: 1.1rem !important;
   font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-  margin-bottom: 1rem !important;
+  letter-spacing: -0.04em !important;
+  margin-bottom: 1.25rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid var(--g200) !important;
 }
 .page-title a {
   color: var(--g900) !important;
   text-decoration: none !important;
 }
 
-/* Search button */
 .search-button {
-  background: white !important;
-  border: 1.5px solid var(--g200) !important;
-  border-radius: var(--r8) !important;
+  background: var(--g50) !important;
+  border: 1px solid var(--g200) !important;
+  border-radius: 8px !important;
   color: var(--g500) !important;
-  font-size: 0.85rem !important;
-  padding: 0.45rem 0.75rem !important;
-  box-shadow: var(--sh-sm) !important;
-  font-family: 'Pretendard', sans-serif !important;
+  font-size: 0.83rem !important;
+  padding: 0.5rem 0.75rem !important;
   width: 100% !important;
+  text-align: left !important;
   cursor: pointer !important;
-  transition: border-color 0.15s, box-shadow 0.15s !important;
+  margin-bottom: 1rem !important;
+  transition: border-color 0.15s !important;
 }
 .search-button:hover {
   border-color: var(--toss-blue) !important;
-  box-shadow: 0 0 0 3px var(--toss-blue-light) !important;
 }
 
-/* Explorer */
 .folder-container.nav-folder-title {
-  border-radius: var(--r8) !important;
-  padding: 0.25rem 0.5rem !important;
+  padding: 0.28rem 0.5rem !important;
+  border-radius: 6px !important;
   transition: background 0.1s !important;
+  cursor: pointer !important;
 }
-.folder-container.nav-folder-title:hover {
-  background: var(--g100) !important;
-}
+.folder-container.nav-folder-title:hover { background: var(--g100) !important; }
 .folder-title {
-  font-size: 0.85rem !important;
+  font-size: 0.82rem !important;
   font-weight: 600 !important;
   color: var(--g800) !important;
 }
+
 .nav-file-title {
-  border-radius: var(--r8) !important;
-  padding: 0.2rem 0.5rem !important;
+  padding: 0.22rem 0.5rem !important;
+  border-radius: 6px !important;
   transition: background 0.1s !important;
 }
-.nav-file-title:hover {
-  background: var(--g100) !important;
-}
+.nav-file-title:hover { background: var(--g100) !important; }
 .nav-file-title a {
-  font-size: 0.83rem !important;
-  color: var(--g700) !important;
+  font-size: 0.8rem !important;
+  color: var(--g600) !important;
   text-decoration: none !important;
   font-weight: 400 !important;
+  display: block !important;
 }
 
-/* =====================
-   CENTER / ARTICLE
-===================== */
+/* ==========================================
+   CENTER
+========================================== */
 .center {
-  padding: 0 1rem !important;
-}
-
-/* page-header (title + meta) */
-.page-header {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+  background: #ffffff !important;
+  padding: 2rem 2.5rem !important;
+  min-width: 0 !important;
+  border-left: 1px solid var(--g200) !important;
+  border-right: 1px solid var(--g200) !important;
 }
 
 h1.article-title {
-  font-family: 'Pretendard', sans-serif !important;
-  font-size: 1.75rem !important;
+  font-size: 1.9rem !important;
   font-weight: 800 !important;
   letter-spacing: -0.04em !important;
   color: var(--g900) !important;
-  line-height: 1.25 !important;
-  margin-bottom: 0.25rem !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .content-meta {
   font-size: 0.8rem !important;
   color: var(--g500) !important;
-  gap: 0.5rem !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 2rem !important;
+  padding-bottom: 1.25rem !important;
+  border-bottom: 1px solid var(--g100) !important;
 }
 
-/* Article card */
 article.popover-hint {
-  background: white !important;
-  border-radius: var(--r12) !important;
-  border: 1px solid var(--g200) !important;
-  box-shadow: var(--sh) !important;
-  padding: 2rem 2.5rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
-/* Typography inside article */
-article h1, article h2, article h3,
-article h4, article h5, article h6 {
-  font-family: 'Pretendard', sans-serif !important;
+/* Typography */
+article h2 {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
   letter-spacing: -0.03em !important;
   color: var(--g900) !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1.5px solid var(--g100) !important;
+}
+article h3 {
+  font-size: 1.05rem !important;
   font-weight: 700 !important;
-  line-height: 1.3 !important;
+  color: var(--g900) !important;
+  margin-top: 1.75rem !important;
 }
-article h2 {
-  font-size: 1.25rem !important;
-  border-bottom: 1.5px solid var(--g200) !important;
-  padding-bottom: 0.35rem !important;
-  margin-top: 2rem !important;
-}
-article h3 { font-size: 1.05rem !important; }
-
 article p, article li {
-  font-size: 0.95rem !important;
+  font-size: 0.975rem !important;
   line-height: 1.85 !important;
   color: var(--g800) !important;
 }
-
-/* Links */
 article a {
   color: var(--toss-blue) !important;
   text-decoration: none !important;
   font-weight: 500 !important;
 }
-article a:hover {
-  text-decoration: underline !important;
-}
+article a:hover { text-decoration: underline !important; }
 
-/* Code */
 article code {
   background: var(--g100) !important;
   border: 1px solid var(--g200) !important;
   border-radius: 4px !important;
-  padding: 0.1em 0.4em !important;
+  padding: 0.12em 0.4em !important;
   font-size: 0.83em !important;
   color: #c7254e !important;
+  font-family: 'IBM Plex Mono', monospace !important;
 }
 article pre {
   background: var(--g900) !important;
-  border-radius: var(--r8) !important;
+  border-radius: 10px !important;
   padding: 1.25rem !important;
+  overflow-x: auto !important;
 }
 article pre code {
   background: transparent !important;
   border: none !important;
   color: #e2e8f0 !important;
   padding: 0 !important;
+  font-size: 0.875rem !important;
 }
 
-/* Blockquote */
 article blockquote {
   border-left: 3px solid var(--toss-blue) !important;
   background: var(--toss-blue-light) !important;
-  border-radius: 0 var(--r8) var(--r8) 0 !important;
-  padding: 0.9rem 1.25rem !important;
-  margin: 1.25rem 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
 }
 article blockquote p { color: var(--g800) !important; margin: 0 !important; }
 
-/* Table */
+/* Table — 태그 세로 깨짐 수정 */
 article table {
   border-collapse: collapse !important;
   width: 100% !important;
   border: 1px solid var(--g200) !important;
-  border-radius: var(--r8) !important;
-  overflow: hidden !important;
-  font-size: 0.88rem !important;
+  font-size: 0.875rem !important;
   table-layout: auto !important;
 }
 article th {
   background: var(--g100) !important;
   color: var(--g700) !important;
   font-weight: 600 !important;
-  padding: 0.6rem 0.9rem !important;
+  padding: 0.6rem 1rem !important;
   text-align: left !important;
   border-bottom: 1px solid var(--g200) !important;
   white-space: nowrap !important;
 }
 article td {
-  padding: 0.6rem 0.9rem !important;
+  padding: 0.6rem 1rem !important;
   border-top: 1px solid var(--g100) !important;
-  vertical-align: top !important;
+  vertical-align: middle !important;
   word-break: break-word !important;
-}
-article tr:hover td { background: var(--g50) !important; }
-
-/* Properties/frontmatter table — 태그 깨짐 방지 */
-.markdown-rendered table td,
-.markdown-rendered table th {
   white-space: normal !important;
-  word-break: break-word !important;
-  overflow-wrap: anywhere !important;
   writing-mode: horizontal-tb !important;
 }
 
@@ -256,14 +264,14 @@ a.tag-link {
   background: var(--g100) !important;
   color: var(--g700) !important;
   border-radius: 999px !important;
-  padding: 0.15rem 0.65rem !important;
-  font-size: 0.75rem !important;
+  padding: 0.2rem 0.7rem !important;
+  font-size: 0.76rem !important;
   font-weight: 500 !important;
   border: 1px solid var(--g200) !important;
   text-decoration: none !important;
-  margin: 0.1rem 0.15rem !important;
+  margin: 0.1rem !important;
   white-space: nowrap !important;
-  transition: all 0.12s ease !important;
+  transition: all 0.12s !important;
 }
 a.tag-link:hover {
   background: var(--toss-blue-light) !important;
@@ -272,26 +280,30 @@ a.tag-link:hover {
   text-decoration: none !important;
 }
 
-/* =====================
-   RIGHT SIDEBAR
-===================== */
+/* ==========================================
+   SIDEBAR RIGHT
+========================================== */
 .right.sidebar {
-  padding: 1.25rem 0.5rem !important;
-  gap: 0.75rem !important;
+  background: #ffffff !important;
+  border-left: 1px solid var(--g200) !important;
+  padding: 1.5rem 1rem !important;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
 }
 
 .graph {
-  background: white !important;
-  border-radius: var(--r12) !important;
+  background: var(--g50) !important;
+  border-radius: 10px !important;
   border: 1px solid var(--g200) !important;
-  box-shadow: var(--sh-sm) !important;
-  overflow: hidden !important;
   padding: 0.75rem !important;
+  margin-bottom: 1rem !important;
 }
 .graph h3 {
-  font-size: 0.72rem !important;
+  font-size: 0.7rem !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.1em !important;
   color: var(--g500) !important;
   font-weight: 600 !important;
   margin: 0 0 0.5rem !important;
@@ -299,106 +311,71 @@ a.tag-link:hover {
 }
 
 .toc {
-  background: white !important;
-  border-radius: var(--r12) !important;
+  background: var(--g50) !important;
+  border-radius: 10px !important;
   border: 1px solid var(--g200) !important;
-  box-shadow: var(--sh-sm) !important;
   padding: 0.75rem 1rem !important;
+  margin-bottom: 1rem !important;
 }
 .toc h3 {
-  font-size: 0.72rem !important;
+  font-size: 0.7rem !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.1em !important;
   color: var(--g500) !important;
   font-weight: 600 !important;
-  margin: 0 !important;
+  margin: 0 0 0.5rem !important;
   border: none !important;
 }
+.toc-content li { list-style: none !important; }
 .toc-content a {
-  font-size: 0.82rem !important;
+  font-size: 0.8rem !important;
   color: var(--g600) !important;
   text-decoration: none !important;
-  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  display: block !important;
 }
 .toc-content a:hover { color: var(--toss-blue) !important; }
 
 .backlinks {
-  background: white !important;
-  border-radius: var(--r12) !important;
+  background: var(--g50) !important;
+  border-radius: 10px !important;
   border: 1px solid var(--g200) !important;
-  box-shadow: var(--sh-sm) !important;
   padding: 0.75rem 1rem !important;
 }
 .backlinks h3 {
-  font-size: 0.72rem !important;
+  font-size: 0.7rem !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.1em !important;
   color: var(--g500) !important;
   font-weight: 600 !important;
-  margin-bottom: 0.5rem !important;
+  margin: 0 0 0.5rem !important;
   border: none !important;
 }
 
-/* =====================
+/* ==========================================
    FOOTER
-===================== */
+========================================== */
 footer {
+  background: #ffffff !important;
+  border-top: 1px solid var(--g200) !important;
+  padding: 1.5rem 2.5rem !important;
   font-size: 0.78rem !important;
   color: var(--g400) !important;
-  border-top: 1px solid var(--g200) !important;
-  margin-top: 1.5rem !important;
-  padding-top: 1rem !important;
 }
-footer a { color: var(--g500) !important; font-weight: 400 !important; }
+footer a { color: var(--g500) !important; font-weight: 400 !important; text-decoration: none !important; }
 
-/* =====================
+/* ==========================================
    SCROLLBAR
-===================== */
+========================================== */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--g300); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--g400); }
 
-/* =====================
-   LAYOUT MAX-WIDTH FIX
-===================== */
-#quartz-body {
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-}
-
-.page#quartz-root {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 100vh !important;
-}
-
-.center {
-  min-width: 0 !important;
-  max-width: 100% !important;
-}
-
-/* 1200px 이상 넓은 화면에서 가운데 컬럼 최대 너비 제한 */
-@media (min-width: 1200px) {
-  #quartz-body {
-    grid-template-columns: 280px minmax(0, 760px) 280px !important;
-  }
-}
-
-@media (min-width: 800px) and (max-width: 1200px) {
-  #quartz-body {
-    grid-template-columns: 280px minmax(0, 1fr) !important;
-  }
-}
-
-/* Center the whole layout */
-@media (min-width: 1200px) {
-  #quartz-root {
-    display: flex !important;
-    justify-content: center !important;
-  }
-  #quartz-body {
-    grid-template-columns: 260px minmax(0, 680px) 260px !important;
-    gap: 1.5rem !important;
-  }
+/* ==========================================
+   MOBILE
+========================================== */
+@media (max-width: 799px) {
+  .center { padding: 1.25rem !important; }
+  h1.article-title { font-size: 1.4rem !important; }
 }
