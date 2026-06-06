@@ -158,3 +158,19 @@ a.tag-link:hover, .tag:hover { background: var(--toss-blue-light) !important; co
   article.popover-hint { padding: 1.5rem !important; }
   .center { max-width: 100% !important; }
 }
+
+/* Fix link colors - override Quartz defaults */
+.markdown-preview-view a,
+.markdown-rendered a,
+article a {
+  color: var(--toss-blue) !important;
+}
+a.internal-link, a.internal {
+  color: var(--toss-blue) !important;
+  text-decoration: none !important;
+}
+
+/* Fix column width */
+.page {
+  grid-template-columns: 320px 1fr 320px !important;
+}
