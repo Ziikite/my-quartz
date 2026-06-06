@@ -68,37 +68,47 @@ document.addEventListener("DOMContentLoaded", () => {
     return b;
   }
 
+  // 정규화: 하이픈 여러개→하나, 특수문자 제거
+  function normalize(str) {
+    return decodeURIComponent(str)
+      .toLowerCase()
+      .replace(/[&+]/g, '-and-')
+      .replace(/[-]+/g, '-')
+      .replace(/[^a-z0-9가-힣\-\/\.]/g, '')
+      .trim();
+  }
+
   async function applyBadges() {
     let newFiles;
     try {
       const res = await fetch('/my-quartz/static/new-files.json');
       newFiles = await res.json();
     } catch(e) { return; }
+    if (!newFiles?.length) return;
 
-    if (!newFiles || !newFiles.length) return;
+    const normalizedNew = newFiles.map(normalize);
 
-    // 사이드바 링크에 뱃지
+    function isNew(href) {
+      const normalized = normalize(href.replace('/my-quartz/', '').replace(/\/$/, ''));
+      return normalizedNew.some(f => {
+        const nf = normalize(f);
+        return normalized === nf || normalized.endsWith(nf) || nf.endsWith(normalized);
+      });
+    }
+
+    function addBadge(el) {
+      if (!el.querySelector('.new-badge')) el.appendChild(makeBadge());
+    }
+
+    // 사이드바 링크
     document.querySelectorAll('.nav-file-title a').forEach(link => {
-      if (link.querySelector('.new-badge')) return;
-      const href = (link.getAttribute('href') || '')
-        .replace('/my-quartz/', '')
-        .replace(/\/$/, '')
-        .toLowerCase();
-      if (newFiles.some(f => href.endsWith(f) || f.endsWith(href))) {
-        link.appendChild(makeBadge());
-      }
+      if (isNew(link.getAttribute('href') || '')) addBadge(link);
     });
 
-    // 현재 페이지 타이틀에도 뱃지
-    const currentPath = window.location.pathname
-      .replace('/my-quartz/', '')
-      .replace(/\/$/, '')
-      .toLowerCase();
-    if (newFiles.some(f => currentPath.endsWith(f) || f.endsWith(currentPath))) {
+    // 현재 페이지 타이틀
+    if (isNew(window.location.pathname)) {
       const title = document.querySelector('h1.article-title');
-      if (title && !title.querySelector('.new-badge')) {
-        title.appendChild(makeBadge());
-      }
+      if (title) addBadge(title);
     }
   }
 
@@ -108,4 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
     applyBadges();
   }
   document.addEventListener('nav', applyBadges);
+
+  // 사이드바 동적 렌더링 대응
+  const observer = new MutationObserver(() => applyBadges());
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
