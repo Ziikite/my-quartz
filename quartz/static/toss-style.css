@@ -390,3 +390,15 @@ footer a { color: var(--g500) !important; font-weight: 400 !important; }
     grid-template-columns: 280px minmax(0, 1fr) !important;
   }
 }
+
+/* Center the whole layout */
+@media (min-width: 1200px) {
+  #quartz-root {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  #quartz-body {
+    grid-template-columns: 260px minmax(0, 680px) 260px !important;
+    gap: 1.5rem !important;
+  }
+}
