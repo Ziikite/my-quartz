@@ -666,3 +666,11 @@ li.section-li div.section ul.tags li a:hover {
   color: var(--toss-blue) !important;
   border-color: var(--toss-blue) !important;
 }
+
+/* ===== section tag size - max specificity ===== */
+html[saved-theme] li.section-li ul.tags li a.internal.tag-link,
+html[saved-theme="light"] li.section-li ul.tags li a.internal.tag-link {
+  font-size: 0.7rem !important;
+  padding: 0.1rem 0.5rem !important;
+  line-height: 1.6 !important;
+}
