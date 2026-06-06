@@ -506,3 +506,20 @@ html[saved-theme] .note-properties .note-properties-separator,
 html[saved-theme="light"] .note-properties .note-properties-separator {
   display: none !important;
 }
+
+/* ===== sidebar font size fix ===== */
+html[saved-theme] .nav-file-title a,
+html[saved-theme="light"] .nav-file-title a,
+.explorer .nav-file-title a,
+.nav-files-container .nav-file-title a {
+  font-size: 12px !important;
+  color: var(--g600) !important;
+  font-weight: 400 !important;
+}
+
+html[saved-theme] .folder-title,
+html[saved-theme="light"] .folder-title {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--g800) !important;
+}
