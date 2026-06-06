@@ -490,3 +490,19 @@ span.note-properties-tags {
 span.note-properties-separator {
   display: none !important;
 }
+
+/* ===== specificity 강화 fix ===== */
+html .note-properties .note-properties-tags,
+html[saved-theme] .note-properties .note-properties-tags,
+html[saved-theme="light"] .note-properties .note-properties-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.25rem !important;
+  white-space: normal !important;
+  width: 100% !important;
+}
+
+html[saved-theme] .note-properties .note-properties-separator,
+html[saved-theme="light"] .note-properties .note-properties-separator {
+  display: none !important;
+}
