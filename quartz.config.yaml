@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: Zii.zip
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -194,6 +194,8 @@ plugins:
       position: left
       priority: 10
   - source: github:quartz-community/darkmode
+    options:
+      defaultMode: light
     enabled: true
     layout:
       position: left
