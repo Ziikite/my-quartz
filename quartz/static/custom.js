@@ -51,74 +51,50 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(document.body, { childList: true, subtree: true });
 });
 
-// ===== NEW badge for recently updated files =====
+
+// ===== NEW badge =====
 (function() {
-  const DAYS_THRESHOLD = 7;
-  const BASE = document.querySelector('body')?.dataset?.basepath || '';
-
-  function daysDiff(dateStr) {
-    if (!dateStr) return 999;
-    const diff = (Date.now() - new Date(dateStr).getTime()) / (1000 * 60 * 60 * 24);
-    return diff;
-  }
-
   function makeBadge() {
-    const badge = document.createElement('span');
-    badge.className = 'new-badge';
-    badge.textContent = 'N';
-    badge.style.cssText = `
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 16px;
-      height: 16px;
-      background: #3182F6;
-      color: white;
-      border-radius: 999px;
-      font-size: 9px;
-      font-weight: 700;
-      margin-left: 5px;
-      padding: 0 4px;
-      vertical-align: middle;
-      flex-shrink: 0;
-      font-family: 'Pretendard', sans-serif;
-      letter-spacing: 0;
-      line-height: 1;
+    const b = document.createElement('span');
+    b.className = 'new-badge';
+    b.textContent = 'N';
+    b.style.cssText = `
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:15px;height:15px;background:#3182F6;color:white;
+      border-radius:999px;font-size:9px;font-weight:700;
+      margin-left:5px;padding:0 3px;vertical-align:middle;
+      flex-shrink:0;font-family:'Pretendard',sans-serif;line-height:1;
     `;
-    return badge;
+    return b;
   }
 
   async function applyBadges() {
-    // contentIndex.json에서 모든 파일의 날짜 가져오기
-    let index;
+    let newFiles;
     try {
-      const res = await fetch(`${BASE}/static/contentIndex.json`);
-      index = await res.json();
+      const res = await fetch('/my-quartz/static/new-files.json');
+      newFiles = await res.json();
     } catch(e) { return; }
 
-    // 날짜 맵 생성 {slug: date}
-    const dateMap = {};
-    for (const [slug, data] of Object.entries(index)) {
-      if (data.date) dateMap[slug] = data.date;
-    }
+    if (!newFiles || !newFiles.length) return;
 
-    // 사이드바 네비게이션 링크에 뱃지 추가
+    // 사이드바 링크에 뱃지
     document.querySelectorAll('.nav-file-title a').forEach(link => {
       if (link.querySelector('.new-badge')) return;
-      const href = link.getAttribute('href') || '';
-      // href에서 slug 추출
-      const slug = href.replace(BASE, '').replace(/^\//, '').replace(/\/$/, '');
-      const date = dateMap[slug];
-      if (date && daysDiff(date) <= DAYS_THRESHOLD) {
+      const href = (link.getAttribute('href') || '')
+        .replace('/my-quartz/', '')
+        .replace(/\/$/, '')
+        .toLowerCase();
+      if (newFiles.some(f => href.endsWith(f) || f.endsWith(href))) {
         link.appendChild(makeBadge());
       }
     });
 
     // 현재 페이지 타이틀에도 뱃지
-    const currentSlug = window.location.pathname
-      .replace(BASE, '').replace(/^\//, '').replace(/\/$/, '') || 'index';
-    const currentDate = dateMap[currentSlug];
-    if (currentDate && daysDiff(currentDate) <= DAYS_THRESHOLD) {
+    const currentPath = window.location.pathname
+      .replace('/my-quartz/', '')
+      .replace(/\/$/, '')
+      .toLowerCase();
+    if (newFiles.some(f => currentPath.endsWith(f) || f.endsWith(currentPath))) {
       const title = document.querySelector('h1.article-title');
       if (title && !title.querySelector('.new-badge')) {
         title.appendChild(makeBadge());
@@ -126,13 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 초기 실행
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', applyBadges);
   } else {
     applyBadges();
   }
-
-  // SPA 페이지 이동 대응
   document.addEventListener('nav', applyBadges);
 })();
