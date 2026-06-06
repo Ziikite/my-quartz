@@ -538,3 +538,12 @@ html[saved-theme="light"] body .nav-files-container .folder-title {
 html[saved-theme="light"] body .nav-files-container .nav-file-title a {
   font-size: 12px !important;
 }
+
+/* ===== nav font - max specificity ===== */
+html[saved-theme="light"] body .nav-files-container .nav-file-title,
+html[saved-theme="light"] body .nav-files-container .nav-file-title a,
+html[saved-theme] body .nav-files-container .nav-file-title,
+html[saved-theme] body .nav-files-container .nav-file-title a {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
