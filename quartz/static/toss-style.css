@@ -649,3 +649,20 @@ li.section-li div.section ul.tags li {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+/* ===== section listing tag size ===== */
+li.section-li div.section ul.tags li a {
+  font-size: 0.72rem !important;
+  padding: 0.15rem 0.55rem !important;
+  border-radius: 999px !important;
+  background: var(--g100) !important;
+  color: var(--g600) !important;
+  border: 1px solid var(--g200) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+li.section-li div.section ul.tags li a:hover {
+  background: var(--toss-blue-light) !important;
+  color: var(--toss-blue) !important;
+  border-color: var(--toss-blue) !important;
+}
