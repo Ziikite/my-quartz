@@ -815,3 +815,40 @@ html[saved-theme="light"] li.section-li ul.tags li a.internal.tag-link:hover {
     font-size: 0.78rem !important;
   }
 }
+
+/* ===== MOBILE MENU ===== */
+@media (max-width: 768px) {
+  /* 모바일 햄버거 버튼 보이게 */
+  .mobile-only {
+    display: flex !important;
+  }
+
+  button.explorer-toggle.mobile-explorer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0.5rem !important;
+    cursor: pointer !important;
+    color: var(--g900) !important;
+  }
+
+  /* 모바일에서 사이드바 토글 */
+  .left.sidebar {
+    left: -100% !important;
+    transition: left 0.25s ease !important;
+  }
+
+  .left.sidebar.open {
+    left: 0 !important;
+  }
+
+  /* 헤더에 메뉴 버튼 공간 */
+  .page-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1rem !important;
+  }
+}
