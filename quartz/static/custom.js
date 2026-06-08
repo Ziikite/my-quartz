@@ -128,3 +128,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new MutationObserver(() => applyBadges());
   observer.observe(document.body, { childList: true, subtree: true });
 })();
+
+// ===== Mobile Navigation =====
+(function() {
+  function initMobileNav() {
+    if (window.innerWidth > 768) return;
+    if (document.getElementById('mobile-nav')) return;
+
+    // 오버레이 생성
+    const overlay = document.createElement('div');
+    overlay.id = 'mobile-overlay';
+    document.body.appendChild(overlay);
+
+    // 모바일 네비바 생성
+    const nav = document.createElement('div');
+    nav.id = 'mobile-nav';
+    nav.innerHTML = `
+      <a id="mobile-nav-title" href="/my-quartz/">Zii.zip</a>
+      <button id="mobile-menu-btn" aria-label="메뉴">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+      </button>
+    `;
+
+    // body 맨 앞에 삽입
+    document.body.insertBefore(nav, document.body.firstChild);
+
+    const sidebar = document.querySelector('.left.sidebar');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+
+    function openMenu() {
+      sidebar?.classList.add('mobile-open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      sidebar?.classList.remove('mobile-open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn?.addEventListener('click', openMenu);
+    overlay.addEventListener('click', closeMenu);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNav);
+  } else {
+    initMobileNav();
+  }
+  document.addEventListener('nav', initMobileNav);
+})();
