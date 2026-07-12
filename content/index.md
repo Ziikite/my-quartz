@@ -22,3 +22,8 @@ title: Welcome
 - `Summaries/AI & Automation`
 - `Summaries/Product & Business`
 
+### 독후감
+
+- `독후감` — 책/독서 노트와 독후감
+- `독후감/원문` — 책 관련 원문 캡처 또는 독서 메모 원본
+
